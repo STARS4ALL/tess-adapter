@@ -1,0 +1,5 @@
+paho-mqtt
+peewee
+MySQL-python
+pymongo
+pika

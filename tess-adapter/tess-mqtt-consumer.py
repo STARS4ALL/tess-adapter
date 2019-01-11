@@ -8,6 +8,7 @@ import config
 
 dbClient = MongoClient(config.MONGO_HOST)
 db = dbClient.photometers
+observation_suffix = "_obs"
 
 def on_connect(client, userdata, flags, rc):
 	print("Connected with result code:"+str(rc))
@@ -18,7 +19,7 @@ def on_message(client, data, msg):
 	timestamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
         message = json.loads(msg.payload)
 	message["tstamp"]=timestamp
-	db.observations.insert_one(message)
+	db.last_observations.insert_one(message)
 	print("Message inserted:"+str(message))		
 		
 		
